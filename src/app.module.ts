@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { BrowserModule } from './browser/browser.module';
+import { InstagramRootModule } from './instagram/root/instagram-root.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [BrowserModule, InstagramRootModule],
 })
 export class AppModule {}
