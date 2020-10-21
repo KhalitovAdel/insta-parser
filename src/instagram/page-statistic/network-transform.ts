@@ -49,4 +49,20 @@ export class NetworkTransform {
     })
     return tags.filter(el => el).join(', ');
   }
+
+  get videoViewCountAvg() {
+    return this.data?.edges?.filter(el => el.is_video).map(el => el.video_view_count).reduce((a, b) => a + b, 0) || 0;
+  }
+
+  get fullData() {
+    return {
+      postsCount: this.postsCount,
+      avgLikes: this.avgLikes,
+      avgComments: this.avgComments,
+      tagsDescription: this.tagsDescription,
+      taggedUsersDescription: this.taggedUsersDescription,
+      taggedUsers: this.taggedUsers,
+      videoViewCountAvg: this.videoViewCountAvg
+    }
+  }
 }

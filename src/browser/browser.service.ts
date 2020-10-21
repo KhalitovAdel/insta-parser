@@ -5,8 +5,13 @@ import { Browser, Page } from 'puppeteer';
 export class BrowserService {
   constructor(@Inject('BROWSER') private readonly browser: Browser) {}
 
-  public cretePage() {
-    return this.browser.newPage();
+  public async cretePage(params?: {isMobile: boolean}) {
+    const page = await this.browser.newPage();
+    if (!params?.isMobile) {
+      await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36');
+      await page.setViewport({width:960,height:768});
+    }
+    return page;
   }
 
   public async closePage(page: Page) {

@@ -53,16 +53,10 @@ export class PageStatisticService {
     await this.goToProfile(nickname);
     const networkData = await this.readNetwork();
     const profile = await this.getProfileData(nickname);
-    await this.returnSelfProfile();
     const transformedNetwork = new NetworkTransform(networkData)
     return {
       ...profile,
-      postsCount: transformedNetwork.postsCount,
-      avgLikes: transformedNetwork.avgLikes,
-      avgComments: transformedNetwork.avgComments,
-      tagsDescription: transformedNetwork.tagsDescription,
-      taggedUsersDescription: transformedNetwork.taggedUsersDescription,
-      taggedUsers: transformedNetwork.taggedUsers,
+      ...transformedNetwork.fullData
     };
   }
 }

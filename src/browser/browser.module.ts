@@ -10,7 +10,8 @@ import { BrowserService } from './browser.service';
         const result: { [key: string]: any } = {};
         const puppeteerOptions = {
           args: ['--disable-gpu', '--no-sandbox', '--disable-features=site-per-process', '--disable-dev-shm-usage', '--disable-setuid-sandbox'],
-          headless: process.env.NODE_ENV === 'production',
+          headless: process.env.NODE_ENV !== 'production',
+          userDataDir: './userprofile'
         };
         return await puppeteer.launch(puppeteerOptions);
       },

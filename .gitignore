@@ -2,7 +2,7 @@
 /dist
 /node_modules
 src/config.ts
-
+userprofile
 # Logs
 logs
 *.log
