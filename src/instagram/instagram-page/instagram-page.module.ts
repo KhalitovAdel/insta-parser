@@ -15,5 +15,6 @@ import { InstagramPageService } from './instagram-page.service';
     },
     InstagramPageService
   ],
+  exports: [InstagramPageService]
 })
 export class InstagramPageModule {}

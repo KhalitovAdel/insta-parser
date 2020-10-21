@@ -2,9 +2,12 @@ import { Module } from '@nestjs/common';
 import { InstagramPageModule } from '../instagram-page/instagram-page.module';
 import { InstagramPageService } from '../instagram-page/instagram-page.service';
 import { auth } from '../../config';
+import { PageStatisticService } from './page-statistic.service';
+import { PageStatisticsController } from './page-statistics.controller';
 
 @Module({
   imports: [InstagramPageModule],
+  controllers: [PageStatisticsController],
   providers: [
     {
       provide: 'PAGE',
@@ -13,6 +16,7 @@ import { auth } from '../../config';
       },
       inject: [InstagramPageService]
     },
+    PageStatisticService
   ]
 })
 export class PageStatisticModule {}
