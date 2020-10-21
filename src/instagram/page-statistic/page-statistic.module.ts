@@ -4,9 +4,10 @@ import { InstagramPageService } from '../instagram-page/instagram-page.service';
 import { auth } from '../../config';
 import { PageStatisticService } from './page-statistic.service';
 import { PageStatisticsController } from './page-statistics.controller';
+import { ProfileModule } from '../../profile/profile.module';
 
 @Module({
-  imports: [InstagramPageModule],
+  imports: [InstagramPageModule, ProfileModule],
   controllers: [PageStatisticsController],
   providers: [
     {

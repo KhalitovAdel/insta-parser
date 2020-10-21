@@ -2,23 +2,23 @@ export class NetworkTransform {
   private readonly data!: any;
   constructor(data: any) { this.data = data}
 
-  get postsCount() {
+  get postsCount(): number {
     return this.data?.count || null;
   }
 
-  get avgLikes() {
+  get avgLikes(): number {
     const likesArray = this.data?.edges?.map(el => el?.node?.edge_media_preview_like?.count || 0) || [];
     const sum = likesArray.reduce((a, b) => a + b, 0);
     return sum/likesArray.length || null;
   }
 
-  get avgComments() {
+  get avgComments(): number {
     const commentsArray = this.data?.edges?.map(el => el?.node?.edge_media_to_comment?.count || 0) || [];
     const sum = commentsArray.reduce((a, b) => a + b, 0);
     return sum/commentsArray.length || null;
   }
 
-  get tagsDescription() {
+  get tagsDescription(): string {
     const tags = [];
     this.data?.edges?.map(el => {
       el?.node?.edge_media_to_caption?.edges?.map(elem => {
@@ -29,7 +29,7 @@ export class NetworkTransform {
     return tags.filter(el => el).join(', ');
   }
 
-  get taggedUsersDescription() {
+  get taggedUsersDescription(): string {
     const tags = [];
     this.data?.edges?.map(el => {
       el?.node?.edge_media_to_caption?.edges?.map(elem => {
@@ -40,7 +40,7 @@ export class NetworkTransform {
     return tags.filter(el => el).join(', ');
   }
 
-  get taggedUsers() {
+  get taggedUsers(): string {
     const tags = [];
     this.data?.edges?.map(el => {
       el?.node?.edge_media_to_tagged_user?.edges?.map(elem => {
@@ -50,7 +50,7 @@ export class NetworkTransform {
     return tags.filter(el => el).join(', ');
   }
 
-  get videoViewCountAvg() {
+  get videoViewCountAvg(): number {
     return this.data?.edges?.filter(el => el.is_video).map(el => el.video_view_count).reduce((a, b) => a + b, 0) || 0;
   }
 
